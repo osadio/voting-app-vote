@@ -17,7 +17,7 @@ phases:
      - docker tag voting-app-vote:latest 405894864140.dkr.ecr.eu-west-1.amazonaws.com/voting-app-vote:latest
      - docker push 405894864140.dkr.ecr.eu-west-1.amazonaws.com/voting-app-vote:latest
      - echo Writing image definition file..
-     - printf '[{"name":"%s","imageUri":"%s"}]' "" "" > imagedefinitions.json
+     - printf '[{"name":"%s","imageUri":"%s"}]' "voting-app-ecs-cluster" "405894864140.dkr.ecr.eu-west-1.amazonaws.com/voting-app-vote" > imagedefinitions.json
 artifacts:
   files:
     - imagedefinitions.json
