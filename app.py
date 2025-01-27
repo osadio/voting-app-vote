@@ -6,6 +6,7 @@ import random
 import json
 import logging
 
+redis_host = os.getenv('REDIS_HOST', 'redis')
 option_a = os.getenv('OPTION_A', "Cats")
 option_b = os.getenv('OPTION_B', "Dogs")
 hostname = socket.gethostname()
@@ -17,8 +18,8 @@ app.logger.handlers.extend(gunicorn_error_logger.handlers)
 app.logger.setLevel(logging.INFO)
 
 def get_redis():
-    if not hasattr(g, 'redis'):
-        g.redis = Redis(host="redis", db=0, socket_timeout=5)
+    if not hasattr(g, redis_host):
+        g.redis = Redis(host=redis_host, db=0, socket_timeout=5)
     return g.redis
 
 @app.route("/", methods=['POST','GET'])
